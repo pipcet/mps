@@ -29,6 +29,8 @@ include $(CLEAR_VARS)
 LOCAL_ARM_MODE := arm
 LOCAL_SRC_FILES := $(libmps_code_src)
 
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/code/
+
 LOCAL_CFLAGS := -O2 -pedantic -DPIC
 LOCAL_CFLAGS_arm := -fomit-frame-pointer -march=armv7-a -mtune=cortex-a5
 LOCAL_CFLAGS_arm64 := -O2 -pedantic -march=armv8-a
