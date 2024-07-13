@@ -19,15 +19,14 @@
 LOCAL_PATH := $(call my-dir)
 
 # Source files in the code directory.
-libmps_code_src := code/mps.c
+mps_code_src := code/mps.c
 
 include $(CLEAR_VARS)
 
 # Make sure instructions are generated in ARM mode.  Thumb mode does
 # not work very well.
 
-LOCAL_ARM_MODE := arm
-LOCAL_SRC_FILES := $(libmps_code_src)
+LOCAL_SRC_FILES := $(mps_code_src)
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/code/
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/code/
@@ -47,6 +46,6 @@ LOCAL_CFLAGS_x86_64 := -I$(LOCAL_PATH)/android-x86_64
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH) $(LOCAL_PATH)/code
 
 # Build as a shared library.
-LOCAL_MODULE := libmps
+LOCAL_MODULE := mps
 
 include $(BUILD_SHARED_LIBRARY)

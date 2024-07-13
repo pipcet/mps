@@ -20,6 +20,10 @@
  * Unix versions.
  */
 
+#ifdef __ANDROID__
+#define __ARCH_HAS_SWAPPED_SIGINFO
+#endif
+
 #include "mpm.h"
 
 #if !defined(MPS_OS_FR) && !defined(MPS_OS_LI)
