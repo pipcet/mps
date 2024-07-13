@@ -20,9 +20,6 @@
  * Unix versions.
  */
 
-#ifdef __ANDROID__
-#define __ARCH_HAS_SWAPPED_SIGINFO
-#endif
 
 #include "mpm.h"
 
@@ -37,6 +34,10 @@
 #include <ucontext.h>  /* for ucontext_t */
 #include <unistd.h>    /* for getpid */
 
+#ifdef __ANDROID__
+#undef SEGV_ACCERR
+#define SEGV_ACCERR 1
+#endif
 SRCID(protsgix, "$Id$");
 
 
