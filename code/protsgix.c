@@ -34,10 +34,6 @@
 #include <ucontext.h>  /* for ucontext_t */
 #include <unistd.h>    /* for getpid */
 
-#ifdef __ANDROID__
-#undef SEGV_ACCERR
-#define SEGV_ACCERR 1
-#endif
 SRCID(protsgix, "$Id$");
 
 
@@ -85,7 +81,10 @@ static void sigHandle(int sig, siginfo_t *info, void *uap)  /* .sigh.args */
 
     AVER(sig == PROT_SIGNAL);
 
+#ifndef __ANDROID__
+    /* At least on some devices, the Android system produces SEGV_MAPERR instead of SEGV_ACCERR... */
     if (info->si_code == SEGV_ACCERR) {  /* .sigh.check */
+#endif
       AccessSet mode;
       Addr base;
       MutatorContextStruct context;
@@ -101,7 +100,9 @@ static void sigHandle(int sig, siginfo_t *info, void *uap)  /* .sigh.args */
       /* exception.  If it succeeds, then allow the mutator to continue. */
       if (ArenaAccess(base, mode, &context))
         goto done;
+#ifndef __ANDROID__
     }
+#endif
 
     /* The exception was not handled by any known protection structure, */
     /* so throw it to the previously installed handler.  That handler won't */
