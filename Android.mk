@@ -43,7 +43,7 @@ LOCAL_CFLAGS_arm64 := -I$(LOCAL_PATH)/android-aarch64
 LOCAL_CFLAGS_x86_64 := -I$(LOCAL_PATH)/android-x86_64
 
 # Export this directory.
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH) $(LOCAL_PATH)/code
 
 # Build as a shared library.
 LOCAL_MODULE := libmps
