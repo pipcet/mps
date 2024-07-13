@@ -29,6 +29,7 @@ include $(CLEAR_VARS)
 LOCAL_ARM_MODE := arm
 LOCAL_SRC_FILES := $(libmps_code_src)
 
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/code/
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/code/
 
 LOCAL_CFLAGS := -O2 -pedantic -DPIC
