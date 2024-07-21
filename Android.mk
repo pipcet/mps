@@ -31,16 +31,7 @@ LOCAL_SRC_FILES := $(mps_code_src)
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/code/
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/code/
 
-LOCAL_CFLAGS := -O2 -pedantic -DPIC
-LOCAL_CFLAGS_arm := -fomit-frame-pointer -march=armv7-a -mtune=cortex-a5
-LOCAL_CFLAGS_arm64 := -O2 -pedantic -march=armv8-a
-LOCAL_CFLAGS_x86_64 := -O2 -pedantic -fomit-frame-pointer -m64 -mtune=k8 \
-  -march=k8
-
-# Allow finding the right config.h and gmp-mparam.h.
-LOCAL_CFLAGS_arm := -I$(LOCAL_PATH)/android-armv7
-LOCAL_CFLAGS_arm64 := -I$(LOCAL_PATH)/android-aarch64
-LOCAL_CFLAGS_x86_64 := -I$(LOCAL_PATH)/android-x86_64
+LOCAL_CFLAGS := -DCONFIG_VAR_COOL
 
 # Export this directory.
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH) $(LOCAL_PATH)/code
