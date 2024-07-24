@@ -53,6 +53,23 @@
 
 
 
+#elif defined(__GNUC__) && defined(_WIN32) && defined(__x86_64__)
+#if defined(CONFIG_PF_STRING) && ! defined(CONFIG_PF_W3I6GC)
+#error "specified CONFIG_PF_... inconsistent with detected w3i6gc"
+#endif
+#define MPS_PF_W3I6GC
+#define MPS_PF_STRING   "w3i6gc"
+#define MPS_OS_W3
+#define MPS_ARCH_I6
+#define MPS_BUILD_GC
+#define MPS_T_WORD      unsigned long long
+#define MPS_T_ULONGEST  unsigned long long
+#define MPS_WORD_WIDTH  64
+#define MPS_WORD_SHIFT  6
+#define MPS_PF_ALIGN    16
+
+
+
 #elif defined(_MSC_VER) && defined(_WIN32) && defined(_M_IX86) && !defined(__POCC__)
 #if defined(CONFIG_PF_STRING) && ! defined(CONFIG_PF_W3I3MV)
 #error "specified CONFIG_PF_... inconsistent with detected w3i3mv"

@@ -38,6 +38,8 @@
 
 #if defined(_MSC_VER) && defined(_WIN32) && defined(_WIN64) && defined(_M_X64)
 typedef unsigned __int64 mps_word_t;
+#elif defined(__GNUC__) && defined(__x86_64__) && defined(__WIN64)
+typedef unsigned long long mps_word_t;
 #else
 typedef unsigned long mps_word_t;
 #endif

@@ -136,7 +136,7 @@ void LockInitGlobal(void)
   globalLockInit = TRUE;
 }
 
-#ifdef __GNUC__
+#if defined(__GNUC__) && !defined(__HAVE_SYNCH__)
 
 #define INIT_ONCE int
 #define INIT_ONCE_STATIC_INIT 0

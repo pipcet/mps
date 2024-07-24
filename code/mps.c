@@ -244,7 +244,7 @@
 
 /* Windows on x86-64 with Microsoft Visual Studio or Pelles C */
 
-#elif defined(MPS_PF_W3I6MV) || defined(MPS_PF_W3I6PC)
+#elif defined(MPS_PF_W3I6MV) || defined(MPS_PF_W3I6PC) || defined(MPS_PF_W3I6GC)
 
 #include "lockw3.c"     /* Windows locks */
 #include "thw3.c"       /* Windows threading */
@@ -258,6 +258,10 @@
 
 #else
 
+#ifdef MPS_PF_W3I6GC
+#error MPS_PF_STRING
+#endif
+#error "what"
 #error "Unknown platform -- can't determine platform specific parts."
 
 #endif
