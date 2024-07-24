@@ -27,11 +27,15 @@
 
 void StackProbe(Size depth)
 {
+#ifdef __GNUC__
+  asm volatile("mov (%%esp, %%eax, 4), %%eax" : "=a" (depth) : "0" (-depth) : "memory");
+#else
   __asm {
     mov  eax, depth
     neg  eax
     mov  eax, [esp+eax*4] /* do the actual probe */
   }
+#endif
 }
 
 

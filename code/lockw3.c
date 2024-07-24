@@ -136,6 +136,24 @@ void LockInitGlobal(void)
   globalLockInit = TRUE;
 }
 
+#ifdef __GNUC__
+
+#define INIT_ONCE int
+#define INIT_ONCE_STATIC_INIT 0
+
+static BOOL InitOnceExecuteOnce(INIT_ONCE *init_once, BOOL CALLBACK (*cb)(INIT_ONCE *init_once, void *parameter, void **context),
+				void *parameter, void **context)
+{
+  if (*init_once == 0)
+    {
+      *init_once = 1;
+      return cb(init_once, parameter, context);
+    }
+
+  return TRUE;
+}
+#endif
+
 /* lockEnsureGlobalLock -- one-time initialization of global locks
  *
  * InitOnceExecuteOnce ensures that only one thread can be running the

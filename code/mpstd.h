@@ -36,7 +36,24 @@
  * isn't compatible enough for MPS purposes.
  */
 
-#if defined(_MSC_VER) && defined(_WIN32) && defined(_M_IX86) && !defined(__POCC__)
+#if defined(__GNUC__) && defined(_WIN32) && defined(__i386__)
+#if defined(CONFIG_PF_STRING) && ! defined(CONFIG_PF_W3I3GC)
+#error "specified CONFIG_PF_... inconsistent with detected w3i3gc"
+#endif
+#define MPS_PF_W3I3GC
+#define MPS_PF_STRING   "w3i3gc"
+#define MPS_OS_W3
+#define MPS_ARCH_I3
+#define MPS_BUILD_GC
+#define MPS_T_WORD      unsigned long
+#define MPS_T_ULONGEST  unsigned long
+#define MPS_WORD_WIDTH  32
+#define MPS_WORD_SHIFT  5
+#define MPS_PF_ALIGN    8
+
+
+
+#elif defined(_MSC_VER) && defined(_WIN32) && defined(_M_IX86) && !defined(__POCC__)
 #if defined(CONFIG_PF_STRING) && ! defined(CONFIG_PF_W3I3MV)
 #error "specified CONFIG_PF_... inconsistent with detected w3i3mv"
 #endif

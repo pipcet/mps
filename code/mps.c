@@ -230,7 +230,7 @@
 
 /* Windows on IA-32 with Microsoft Visual Studio or Pelles C */
 
-#elif defined(MPS_PF_W3I3MV) || defined(MPS_PF_W3I3PC)
+#elif defined(MPS_PF_W3I3MV) || defined(MPS_PF_W3I3PC) || defined(MPS_PF_W3I3GC)
 
 #include "lockw3.c"     /* Windows locks */
 #include "thw3.c"       /* Windows threading */
